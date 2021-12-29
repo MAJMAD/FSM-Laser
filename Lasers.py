@@ -1,6 +1,7 @@
 from pipython.pidevice.interfaces.piserial import PISerial
 from pipython.pidevice.gcsmessages import GCSMessages
 from pipython.pidevice.gcscommands import GCSCommands
+from matplotlib import pyplot as plt
 import time
 import math
 
@@ -13,19 +14,25 @@ def Polygon(device, n, r, loopval):
     pi = 3.14159
     Xpos = [] # List of X coordinates on the circle approximation
     Ypos = [] # List of Y coordinates on the circle approximation
-    for point in range(n):
+    for point in range(n+1):
         X = r * math.sin(2 * pi * point / n)
         Y = r * math.cos(2 * pi * point / n)
         Xpos.append(X)
         Ypos.append(Y)
     loopcount = 0
     while loopcount < loopval:
-        for point in range(n):
-            device.MOV('1', Xpos[point])
-            device.MOV('2', Ypos[point])
+        for point in range(n+1):
+            device.MOV(['1', '2'], [Ypos[point], Xpos[point]])
+            #device.MOV('2', Xpos[point])
             WaitForMotionDone(device, 1)
             WaitForMotionDone(device, 2)
         loopcount +=1
+#     plt.plot(Xpos, Ypos, color='red')
+#     plt.xlabel('X')
+#     plt.ylabel('Y')
+#     plt.title('Generated Motion Profile')
+#     plt.grid(True)
+#     plt.show()
         
 def Spiral(device, n, r, loopval):
     pi = 3.14159
@@ -188,15 +195,15 @@ def HorizontalRaster(device, axis1, axis2, travelmax1, travelmin1, travelmax2, t
         WaitForMotionDone(device, int(axis2))
         for row in range(int(travelmin1), int(travelmax1), 1):
             if row % 2 == 0:
-                v931.MOV(axis2, travelmax2)
-                WaitForMotionDone(v931, int(axis2))
-                v931.MOV(axis1, row + 1)
-                WaitForMotionDone(v931, int(axis1))
+                device.MOV(axis2, travelmax2)
+                WaitForMotionDone(device, int(axis2))
+                device.MOV(axis1, row + 1)
+                WaitForMotionDone(device, int(axis1))
             if row % 2 == 1:
-                v931.MOV(axis2, travelmin2)
-                WaitForMotionDone(v931, int(axis2))
-                v931.MOV(axis1, row + 1)
-                WaitForMotionDone(v931, int(axis1))
+                device.MOV(axis2, travelmin2)
+                WaitForMotionDone(device, int(axis2))
+                device.MOV(axis1, row + 1)
+                WaitForMotionDone(device, int(axis1))
         loopcount +=1
         
 def ConstVelCircle(device, axis1, axis2, travelmax1, travelmin1, travelmax2, travelmin2, numScans, numCircles):
@@ -308,14 +315,14 @@ def Driver():
     axis1 = '1'
     axis2 = '2'
     while True:
-        VerticalLine(device, axis1, travelmax1, travelmin1, numLines)
-        Center(device)
-        HorizontalLine(device, axis2, travelmax2, travelmin2, numLines)
-        Center(device)
-        PositiveDiagonalLine(device, axis1, axis2, travelmax1, travelmin1, travelmax2, travelmin2, numLines)
-        Center(device)
-        NegativeDiagonalLine(device, axis1, axis2, travelmax1, travelmin1, travelmax2, travelmin2, numLines)
-        Center(device)
+#         VerticalLine(device, axis1, travelmax1, travelmin1, numLines)
+#         Center(device)
+#         HorizontalLine(device, axis2, travelmax2, travelmin2, numLines)
+#         Center(device)
+#         PositiveDiagonalLine(device, axis1, axis2, travelmax1, travelmin1, travelmax2, travelmin2, numLines)
+#         Center(device)
+#         NegativeDiagonalLine(device, axis1, axis2, travelmax1, travelmin1, travelmax2, travelmin2, numLines)
+#         Center(device)
         Triangle(device, travelmax1, numShapes)
         Center(device)
         Diamond(device, travelmax1, numShapes)
