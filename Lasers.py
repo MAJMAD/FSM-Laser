@@ -208,7 +208,7 @@ def Driver():
         WaitForMotionDone(device, axis2)
         DriveWave(device, [int(axis1), int(axis2)], [polygony, polygonx],f) #triangle
         MakeDiamond(device)
-        device.MOV([axis1, axis2],[-30, -30])
+        device.MOV([axis1, axis2],[-30, 0])
         WaitForMotionDone(device, axis1)
         WaitForMotionDone(device, axis2)
         DriveWave(device, [int(axis1), int(axis2)], [polygony, polygonx],f) #diamond
