@@ -49,7 +49,7 @@ def StartController(f):
     return v931
 
 def MakeWaves(device):
-    wgConfigifrequencyOfWave = 30      # frequency of wave
+    wgConfigifrequencyOfWave = 33      # frequency of wave
     PARAM_ServoUpdateTime = 234881536
     servoCycleTime = device.qSPA('1',PARAM_ServoUpdateTime)
     iNumberOfPoints = int((1/(servoCycleTime['1'][234881536] * wgConfigifrequencyOfWave)))
@@ -64,7 +64,7 @@ def MakeWaves(device):
     device.WGC(2,0)
     
 def MakeTriangle(device):
-    wgConfigifrequencyOfWave = 30      # frequency of wave
+    wgConfigifrequencyOfWave = 26      # frequency of wave
     PARAM_ServoUpdateTime = 234881536
     servoCycleTime = device.qSPA('1',PARAM_ServoUpdateTime)
     iNumberOfPoints = int((1/(servoCycleTime['1'][234881536] * wgConfigifrequencyOfWave)))
@@ -80,7 +80,7 @@ def MakeTriangle(device):
     device.WGC(2,0)
 
 def MakeDiamond(device):
-    wgConfigifrequencyOfWave = 30      # frequency of wave
+    wgConfigifrequencyOfWave = 29      # frequency of wave
     PARAM_ServoUpdateTime = 234881536
     servoCycleTime = device.qSPA('1',PARAM_ServoUpdateTime)
     iNumberOfPoints = int((1/(servoCycleTime['1'][234881536] * wgConfigifrequencyOfWave)))
@@ -117,27 +117,27 @@ def MakeDiamond(device):
 #     device.WGC(1,0)
 #     device.WGC(2,0)
     
-# def MakeHexagon(device):
-#     wgConfigifrequencyOfWave = 30      # frequency of wave
-#     PARAM_ServoUpdateTime = 234881536
-#     servoCycleTime = device.qSPA('1',PARAM_ServoUpdateTime)
-#     iNumberOfPoints = int((1/(servoCycleTime['1'][234881536] * wgConfigifrequencyOfWave)))
-#     device.WAV_LIN(5,1,iNumberOfPoints,'X', 10, -15, 30,iNumberOfPoints) #y-axis 30 -> 15
-#     device.WAV_LIN(5,1,iNumberOfPoints,'&', 10, -30, 15,iNumberOfPoints) #y-axis 15 -> -15
-#     device.WAV_LIN(5,1,iNumberOfPoints,'&', 10, -15, -15,iNumberOfPoints) #y-axis -15 -> -30
-#     device.WAV_LIN(5,1,iNumberOfPoints,'&', 10, 15, -30,iNumberOfPoints) #y-axis -30 -> -15
-#     device.WAV_LIN(5,1,iNumberOfPoints,'&', 10, 30, -15,iNumberOfPoints) #y-axis -15 -> 15
-#     device.WAV_LIN(5,1,iNumberOfPoints,'&', 10, 15, 15,iNumberOfPoints) #y-axis 15 -> 30
-#     device.WAV_LIN(6,1,iNumberOfPoints,'X', 10, 26, 0,iNumberOfPoints) #x-axis 0 -> 26
-#     device.WAV_LIN(6,1,iNumberOfPoints,'&', 10, 0, 26,iNumberOfPoints) #x-axis 26 -> 26
-#     device.WAV_LIN(6,1,iNumberOfPoints,'&', 10, -26, 26,iNumberOfPoints) #x-axis 26 -> 0
-#     device.WAV_LIN(6,1,iNumberOfPoints,'&', 10, -26, 0,iNumberOfPoints) #x-axis 0 -> -26
-#     device.WAV_LIN(6,1,iNumberOfPoints,'&', 10, 0, -26,iNumberOfPoints) #x-axis -26 -> -26
-#     device.WAV_LIN(6,1,iNumberOfPoints,'&', 10, 26, -26,iNumberOfPoints) #x-axis -26 -> 0
-#     device.WTR(1,1,0)
-#     device.WTR(2,1,0)
-#     device.WGC(1,0)
-#     device.WGC(2,0)
+def MakeHexagon(device):
+    wgConfigifrequencyOfWave = 29      # frequency of wave
+    PARAM_ServoUpdateTime = 234881536
+    servoCycleTime = device.qSPA('1',PARAM_ServoUpdateTime)
+    iNumberOfPoints = int((1/(servoCycleTime['1'][234881536] * wgConfigifrequencyOfWave)))
+    device.WAV_LIN(7,1,iNumberOfPoints,'X', 10, -15, 30,iNumberOfPoints) #y-axis 30 -> 15
+    device.WAV_LIN(7,1,iNumberOfPoints,'&', 10, -30, 15,iNumberOfPoints) #y-axis 15 -> -15
+    device.WAV_LIN(7,1,iNumberOfPoints,'&', 10, -15, -15,iNumberOfPoints) #y-axis -15 -> -30
+    device.WAV_LIN(7,1,iNumberOfPoints,'&', 10, 15, -30,iNumberOfPoints) #y-axis -30 -> -15
+    device.WAV_LIN(7,1,iNumberOfPoints,'&', 10, 30, -15,iNumberOfPoints) #y-axis -15 -> 15
+    device.WAV_LIN(7,1,iNumberOfPoints,'&', 10, 15, 15,iNumberOfPoints) #y-axis 15 -> 30
+    device.WAV_LIN(8,1,iNumberOfPoints,'X', 10, 26, 0,iNumberOfPoints) #x-axis 0 -> 26
+    device.WAV_LIN(8,1,iNumberOfPoints,'&', 10, 0, 26,iNumberOfPoints) #x-axis 26 -> 26
+    device.WAV_LIN(8,1,iNumberOfPoints,'&', 10, -26, 26,iNumberOfPoints) #x-axis 26 -> 0
+    device.WAV_LIN(8,1,iNumberOfPoints,'&', 10, -26, 0,iNumberOfPoints) #x-axis 0 -> -26
+    device.WAV_LIN(8,1,iNumberOfPoints,'&', 10, 0, -26,iNumberOfPoints) #x-axis -26 -> -26
+    device.WAV_LIN(8,1,iNumberOfPoints,'&', 10, 26, -26,iNumberOfPoints) #x-axis -26 -> 0
+    device.WTR(1,1,0)
+    device.WTR(2,1,0)
+    device.WGC(1,0)
+    device.WGC(2,0)
     
 # def MakeOctagon(device):
 #     wgConfigifrequencyOfWave = 30      # frequency of wave
@@ -193,7 +193,7 @@ def Driver():
     polygonx2 = 8
     MakeWaves(device)
     MakeTriangle(device)
-    MakeDiamond(device)
+    MakeHexagon(device)
     f.close()
     totaltime=0
     while True:
@@ -211,20 +211,20 @@ def Driver():
         WaitForMotionDone(device, axis1)
         WaitForMotionDone(device, axis2)
         DriveWave(device, [int(axis1), int(axis2)], [polygony1, polygonx1],f) #triangle
-        device.MOV([axis1, axis2],[30, 0])
-        WaitForMotionDone(device, axis1)
-        WaitForMotionDone(device, axis2)
-        DriveWave(device, [int(axis1), int(axis2)], [polygony2, polygonx2],f) #diamond
+#         device.MOV([axis1, axis2],[30, 0])
+#         WaitForMotionDone(device, axis1)
+#         WaitForMotionDone(device, axis2)
+#         DriveWave(device, [int(axis1), int(axis2)], [polygony2, polygonx2],f) #diamond
 #         MakePentagon(device)
 #         device.MOV([axis1, axis2],[30, 0])
 #         WaitForMotionDone(device, axis1)
 #         WaitForMotionDone(device, axis2)
 #         DriveWave(device, [int(axis1), int(axis2)], [polygony, polygonx],f) #pentagon
 #         MakeHexagon(device)
-#         device.MOV([axis1, axis2],[30, 0])
-#         WaitForMotionDone(device, axis1)
-#         WaitForMotionDone(device, axis2)
-#         DriveWave(device, [int(axis1), int(axis2)], [polygony, polygonx],f) #hexagon
+        device.MOV([axis1, axis2],[30, 0])
+        WaitForMotionDone(device, axis1)
+        WaitForMotionDone(device, axis2)
+        DriveWave(device, [int(axis1), int(axis2)], [polygony2, polygonx2],f) #hexagon
 #         MakeOctagon(device)
 #         device.MOV([axis1, axis2],[30, 0])
 #         WaitForMotionDone(device, axis1)
